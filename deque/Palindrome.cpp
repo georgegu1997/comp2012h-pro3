@@ -1,3 +1,10 @@
+//
+// COMP 2012H project#3 Queues @HKUST
+// Author: GU Qiao
+// Email: qgu@connect.ust.hk
+// All rights reserved.
+//
+
 #include <stdio.h>
 #include <iostream>
 #include <cstdlib>
@@ -11,6 +18,8 @@ int main() {
   char last;
   Deque<char> dq;
   int is_palindrome = 1;
+
+  cout<<"Please input the sequence(must be composed by A, T, C, and G):"<<endl;
 
   while ((c = getchar()) != '\n') {
     if(c != 'A' && c != 'T' && c != 'C' && c != 'G') {

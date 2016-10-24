@@ -1,3 +1,10 @@
+//
+// COMP 2012H project#3 Queues @HKUST
+// Author: GU Qiao
+// Email: qgu@connect.ust.hk
+// All rights reserved.
+//
+
 #include <iostream>
 #include <string>
 #include <stdio.h>
@@ -20,6 +27,8 @@ int main(int argc, char ** argv) {
   int subset_size = atoi(argv[1]);
   RandomizedQueue<string> rq;
 
+  cout<<"Please input the string elements, splited by ' ':"<<endl;
+
   while ((c = getchar()) != '\n') {
     if (c == ' '){
       if ( tmp != "" && tmp != " "){
@@ -31,12 +40,17 @@ int main(int argc, char ** argv) {
     }else {
       tmp += c;
     }
-
   }
+
+  if(tmp != "") rq.enqueue(tmp);
 
   if (rq.size() < subset_size) {
+    cout<<"The size of the subset is larger than the original set. "<<endl;
     subset_size = rq.size();
+    cout<<"The size of subset is set to be "<<subset_size<<endl;
   }
+
+  cout<<"The output is:"<<endl;
 
   for (i = 0; i < subset_size; i++) {
     cout<<rq.dequeue()<<endl;

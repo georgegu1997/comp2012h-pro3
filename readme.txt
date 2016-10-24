@@ -2,7 +2,7 @@
  *  Randomized Queues and Deques
  **********************************************************************/
 
-Name:
+Name: GU Qiao
 ID:
 Login:
 Hours to complete assignment (optional):
@@ -15,6 +15,18 @@ Hours to complete assignment (optional):
  **********************************************************************/
 PUT YOUR ANSWER HERE
 
+Writing deque, I used the linked list structure. Because the linked list
+can make all add and remove operations spend constant time, and use the
+space proportional to the number of items currently stored in the deque.
+The iterator of linked list just like a node, so it takes constant extra
+space.
+
+Writing randomized queue, I used resizing array, which would double its
+capacity when the the number of items in the array reach its capacity (2
+at first), and shrink its capacity to half when the  number of items
+decreases to one fourth of the capacity. The time efficiency will be
+proved in the next question. the iterator stores a shuffled list of index,
+so it takes linear extra space per iterator.
 
 /**********************************************************************
  *  Briefly describe why any sequence of N randomized queue operations,
@@ -22,11 +34,32 @@ PUT YOUR ANSWER HERE
  **********************************************************************/
 PUT YOUR ANSWER HERE
 
+For convenience, let's call a operation that only takes one copy operation
+"small operation", and the operation that takes multiple copy operations
+(i.e. involving resizing) "big operation".
+
+In worst case, when the number of the items is increasing, from the last
+big operation to the next big operation, there at least exist some small
+operations. If the big operation takes 2^m copy actions, then the number
+of the small operations must be at least 2^(m-1). Through amortization
+analysis, each operation takes 3 copy actions on average. So, the total
+time cost is O(3n)=O(n).
+
+If the number of the items is decreasing, from the last big operation to
+the next big operation that takes 2^m copy actions, there must be at least
+2^m. And on average, each operation takes 2 copy actions. So, the total
+time cost is O(2n)=O(n).
+
+So the total time cost must be between 2n and 3n, which is O(n).
 
 /**********************************************************************
  *  Briefly describe why each Deque operation takes O(1) time.
  **********************************************************************/
 PUT YOUR ANSWER HERE
+
+The structure of the Deque is doubly linked list. It holds pointers both
+to the first and the last items. So, it only takes a constant time to
+add or remove the first or the last item, which is O(1).
 
 
 /**********************************************************************
@@ -35,8 +68,8 @@ PUT YOUR ANSWER HERE
  *  for a "typical machine" given in Lecture. In your analysis, don't include
  *  the memory for the items themselves (as this memory is allocated by
  *  the client and depends on the item type.
- *  For a typical machine, refer to page 11 of 
- *  http://www.cs.princeton.edu/courses/archive/spring10/cos226/lectures/02-14Analysis-2x2.pdf 
+ *  For a typical machine, refer to page 11 of
+ *  https://www.cs.princeton.edu/courses/archive/spr10/cos226/lectures/02-14Analysis-2x2.pdf
  **********************************************************************/
 
 RandomizedQueue:
@@ -59,14 +92,14 @@ Dequeue:
 
 
 /**********************************************************************
- *  Describe any serious problems you encountered.                    
+ *  Describe any serious problems you encountered.
  **********************************************************************/
 
 
 
 
 /**********************************************************************
- *  List any other comments here. Feel free to provide any feedback   
- *  on how much you learned from doing the assignment, and whether    
- *  you enjoyed doing it.                                             
+ *  List any other comments here. Feel free to provide any feedback
+ *  on how much you learned from doing the assignment, and whether
+ *  you enjoyed doing it.
  **********************************************************************/

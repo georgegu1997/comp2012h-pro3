@@ -1,3 +1,10 @@
+//
+// COMP 2012H project#3 Queues @HKUST
+// Author: GU Qiao
+// Email: qgu@connect.ust.hk
+// All rights reserved.
+//
+
 #ifndef RANDOMIZED_QUEUE_H
 #define RANDOMIZED_QUEUE_H
 
@@ -84,6 +91,9 @@ void RandomizedQueue<T>::enqueue(T item) {
 
 template <typename T>
 T RandomizedQueue<T>::dequeue() {
+  if(this->isEmpty()) {
+    throw runtime_error("Try to dequeue item from a empty list.");
+  }
   int index = rand() % _size;
   T a = _start[index];
   _start[index] = _start[_size - 1];

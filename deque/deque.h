@@ -1,3 +1,11 @@
+//
+// COMP 2012H project#3 Queues @HKUST
+// Author: GU Qiao
+// Email: qgu@connect.ust.hk
+// All rights reserved.
+//
+
+
 #ifndef DEQUE_H
 #define DEQUE_H
 
@@ -58,11 +66,7 @@ Deque<T>::~Deque() {
 
 template <typename T>
 bool Deque<T>::isEmpty() {
-  if(head->next==head && head->prev==head){
-    return true;
-  }else {
-    return false;
-  }
+  return (head->next==head && head->prev==head);
 }
 
 template <typename T>
