@@ -46,6 +46,16 @@ int main(int argc, char ** argv){
 	}
 	cout << endl;
 
+	cout<<"using assign constructor.."<<endl;
+	RandomizedQueue<char> rq2 = rq;
+	itr = rq2.iterator();
+	cout << "queue : ";
+	for(i = 0; i < rq2.size();i++){
+		cout << *itr << " ";
+		++itr;
+	}
+	cout << endl;
+
 /*
 	cout << "testing the runtime exception!"<<endl;
 	cout << "dequeue :  " << rq.dequeue() << endl;

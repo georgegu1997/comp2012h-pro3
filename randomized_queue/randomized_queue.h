@@ -17,8 +17,20 @@ using namespace std;
 template <typename T>
 class RandomizedQueue {
 public:
+
+  //declare the class name first
   class Iterator;
+
+  //default constructor
   RandomizedQueue();
+
+  //copy constructor
+  RandomizedQueue(const RandomizedQueue<T>& rq);
+
+  // assign constructor
+  RandomizedQueue<T>& operator=(const RandomizedQueue<T>& rq);
+
+  //destructor
   ~RandomizedQueue();
   bool isEmpty();
   int size();
@@ -29,8 +41,15 @@ public:
 
   class Iterator {
   public:
+    //default constructor
     Iterator();
+    //typical constructor from a RandomizedQueue
     Iterator(T*, int);
+    //copy constructor
+    Iterator(const Iterator& itr);
+    //assign constructor
+    Iterator& operator=(const Iterator& itr);
+
     ~Iterator();
     void operator++();
     T operator*();
@@ -51,6 +70,27 @@ private:
 
 template <typename T>
 RandomizedQueue<T>::RandomizedQueue():_size(0),_capacity(2),_start(new T[2]) {}
+
+template <typename T>
+RandomizedQueue<T>::RandomizedQueue(const RandomizedQueue<T>& rq):_size(rq._size), _capacity(rq._capacity), _start(new T[rq._capacity]) {
+  int i;
+  for (i = 0; i<_size; i++){
+    this->_start[i] = rq._start[i];
+  }
+}
+
+template <typename T>
+RandomizedQueue<T>& RandomizedQueue<T>::operator=(const RandomizedQueue<T>& rq) {
+  this->~RandomizedQueue();
+  _size = rq._size;
+  _capacity = rq._capacity;
+  _start = new T[_capacity];
+  int i;
+  for (i = 0; i<_size; i++){
+    this->_start[i] = rq._start[i];
+  }
+  return *this;
+}
 
 template <typename T>
 RandomizedQueue<T>::~RandomizedQueue() {
@@ -119,15 +159,34 @@ RandomizedQueue<T>::Iterator::Iterator() {}
 template <typename T>
 RandomizedQueue<T>::Iterator::Iterator(T* start, int size): _pos(0), _start(start), max_index(size) {
   shuffle_index = new int[max_index];
-  cout<<"creating: "<< shuffle_index <<endl;
   shuffle();
 }
 
 template <typename T>
+RandomizedQueue<T>::Iterator::Iterator(const Iterator& itr):_pos(itr._pos), _start(itr._start), max_index(itr.max_index) {
+  shuffle_index = new int[max_index];
+
+  int i;
+  for (i=0; i<max_index; i++){
+    shuffle_index[i] = itr.shuffle_index[i];
+  }
+}
+
+template <typename T>
+typename RandomizedQueue<T>::Iterator& RandomizedQueue<T>::Iterator::operator=(const Iterator& itr) {
+  this->_pos = itr._pos;
+  this->_start = itr._start;
+  this->max_index = itr.max_index;
+  int i;
+  for (i=0; i<max_index; i++){
+    this->shuffle_index[i] = itr.shuffle_index[i];
+  }
+  return *this;
+}
+
+template <typename T>
 RandomizedQueue<T>::Iterator::~Iterator(){
-  cout<<"deleting: "<< shuffle_index <<endl;
   delete[] shuffle_index;
-  //cout<<"delete successfully!"<<endl;
 }
 
 template <typename T>

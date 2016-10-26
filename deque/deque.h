@@ -16,41 +16,113 @@ using namespace std;
 template<typename T>
 class Deque {
 private:
+  // The struct of the Node
+  //it contains pointers to the next and previous node besides the data
   struct Node {
     T data;
     Node* next;
     Node* prev;
   };
+
+  //the dummy head node
   Node *head;
+
+  //the number of the items stored currently
   int _size;
 
 public:
+
+  //default constructor
   Deque();
+
+  //copy  constructor
+  Deque(const Deque<T>&);
+
+  //assign constructor
+  Deque<T>& operator=(const Deque<T>&);
+
+  //destructor
   ~Deque();
+
+  //return true if it is empty
   bool isEmpty();
+
+  // return the number of items on the deque
   int size();
+
+  // insert the item at the front of the queue
   void addFirst(T);
+
+  // insert the item at the end of the queue
   void addLast(T);
+
+  // delete and return the first item in queue
   T removeFirst();
+
+  // delete and return the last item in queue
   T removeLast();
 
-  typedef class DequeIterator {
+  class Iterator {
     friend class Deque<T>;
   public:
+    //because it doesn't have dynamic data member
+    //only define the typical constructor, using copy and assign constructor
+    //created by the compiler
     DequeIterator(const Deque<T>*);
+
+    //overloading the ++ and * operator
     void operator++();
     T operator*();
-  private:
-    Node *node;
-  } Iterator;
 
+  private:
+    // The current node position the iterator points to
+    Node *node;
+  };
+
+  // return an iterator that examines the
+  // items in order from front to back
   Iterator iterator();
 };
+
+/*
+  the implement of the member functions
+*/
 
 template <typename T>
 Deque<T>::Deque():head(new Node), _size(0) {
   head->prev = head;
   head->next = head;
+}
+
+template <typename T>
+Deque<T>::Deque(const Deque<T>& dq):head(new Node), _size(0) {
+  head->prev = head;
+  head->next = head;
+  int i;
+  Node* dq_current;
+  dq_current = dq.head;
+  for (i = 0; i<dq._size; i++) {
+    dq_current = dq_current->next;
+    this->addLast(dq_current->data);
+  }
+}
+
+template <typename T>
+Deque<T>& Deque<T>::operator=(const Deque<T>& dq){
+  this->~Deque();
+  _size = 0;
+  head = new Node;
+  head->prev = head;
+  head->next = head;
+  int i;
+  Node* dq_current;
+  dq_current = dq.head;
+  for (i = 0; i < dq._size; i++) {
+    dq_current = dq_current->next;
+    this->addLast(dq_current->data);
+  }
+
+  return *this;
 }
 
 template <typename T>

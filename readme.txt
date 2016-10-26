@@ -117,7 +117,9 @@ from that.
  *  Describe any serious problems you encountered.
  **********************************************************************/
 
-
+Because there are dynamic data members in some classes, so it's a must to
+write the copy constructor and assign constructor. When I neglect that at
+first, I meet some bugs such as double delete.
 
 
 /**********************************************************************

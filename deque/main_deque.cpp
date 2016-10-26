@@ -51,11 +51,25 @@ int main(int argc, char ** argv){
 		}
 		cout << endl;
 
+	cout<<"using assign constructor.."<<endl;
+	Deque<char> q2 = q;
+	cout << "remove first : " << q2.removeFirst() << endl;
+	itr = q2.iterator();
+	cout << "deque : ";
+	for(i = 0; i < q2.size();i++){
+		cout << *itr << " ";
+		++itr;
+		}
+		cout << endl;
+
+
 //  output of 1. is different from 2.'s  , Why?
 //1.
 		cout <<"remove LFL : " << q.removeLast() << " ";
 		cout << q.removeFirst()<<" ";
 		cout <<q.removeLast()<<endl;
+
+
 /*
 //2.
 		cout <<"remove LFL : " << q.removeLast() << " " << q.removeFirst()<<" "<<q.removeLast()<<endl;
@@ -69,6 +83,5 @@ int main(int argc, char ** argv){
 		cout << "remove last " << q.removeLast() << endl;
 		cout << "remove last " << q.removeLast() << endl;
 */
-
 		return 0;
 }
