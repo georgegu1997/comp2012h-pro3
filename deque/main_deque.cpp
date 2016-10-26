@@ -60,7 +60,7 @@ int main(int argc, char ** argv){
 //2.
 		cout <<"remove LFL : " << q.removeLast() << " " << q.removeFirst()<<" "<<q.removeLast()<<endl;
 */
-
+/*
     cout << "testing runtime error"<<endl;
 		cout << "remove last " << q.removeLast() << endl;
 		cout << "remove last " << q.removeLast() << endl;
@@ -68,7 +68,7 @@ int main(int argc, char ** argv){
 		cout << "remove last " << q.removeLast() << endl;
 		cout << "remove last " << q.removeLast() << endl;
 		cout << "remove last " << q.removeLast() << endl;
-
+*/
 
 		return 0;
 }

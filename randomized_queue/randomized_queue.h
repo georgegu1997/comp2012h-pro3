@@ -119,14 +119,14 @@ RandomizedQueue<T>::Iterator::Iterator() {}
 template <typename T>
 RandomizedQueue<T>::Iterator::Iterator(T* start, int size): _pos(0), _start(start), max_index(size) {
   shuffle_index = new int[max_index];
-  //cout<<"creating: "<< shuffle_index <<endl;
+  cout<<"creating: "<< shuffle_index <<endl;
   shuffle();
 }
 
 template <typename T>
 RandomizedQueue<T>::Iterator::~Iterator(){
-  //cout<<"deleting: "<< shuffle_index <<endl;
-  //delete[] shuffle_index;
+  cout<<"deleting: "<< shuffle_index <<endl;
+  delete[] shuffle_index;
   //cout<<"delete successfully!"<<endl;
 }
 
@@ -137,6 +137,9 @@ void RandomizedQueue<T>::Iterator::operator++() {
 
 template <typename T>
 T RandomizedQueue<T>::Iterator::operator*() {
+  if (_pos >= max_index) {
+    throw runtime_error("Iterator: trying to get a item out of range of array");
+  }
   return *(_start+shuffle_index[_pos]);
 }
 

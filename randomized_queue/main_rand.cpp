@@ -46,6 +46,7 @@ int main(int argc, char ** argv){
 	}
 	cout << endl;
 
+/*
 	cout << "testing the runtime exception!"<<endl;
 	cout << "dequeue :  " << rq.dequeue() << endl;
 	cout << "dequeue :  " << rq.dequeue() << endl;
@@ -53,6 +54,6 @@ int main(int argc, char ** argv){
 	cout << "dequeue :  " << rq.dequeue() << endl;
 	cout << "dequeue :  " << rq.dequeue() << endl;
 	cout << "dequeue :  " << rq.dequeue() << endl;
-
+*/
 	return 0;
 }

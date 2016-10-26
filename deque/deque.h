@@ -49,7 +49,6 @@ public:
 
 template <typename T>
 Deque<T>::Deque():head(new Node), _size(0) {
-  head->data = NULL;
   head->prev = head;
   head->next = head;
 }

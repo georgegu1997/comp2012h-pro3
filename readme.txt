@@ -98,6 +98,8 @@ Dequeue:
  *  Known bugs / limitations.
  **********************************************************************/
 
+srand() will get the current time (in second) as the random seed. So when
+run the program multiple times in one second, the output will be the same.
 
 /**********************************************************************
  *  List whatever help (if any) that you received and from whom,
