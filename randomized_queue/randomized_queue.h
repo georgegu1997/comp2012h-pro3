@@ -144,15 +144,16 @@ template <typename T>
 void RandomizedQueue<T>::Iterator::shuffle() {
   int i;
   int index[max_index];
+  int temp_index;
 
   for (i = 0;i < max_index;i++) {
     index[i] = i;
   }
 
   for (i = 0;i < max_index;i++) {
-    int temp_index = rand() % (max_index-i);
+    temp_index = rand() % (max_index-i);
     shuffle_index[i] = index[temp_index];
-    index[temp_index] = index[max_index-1];
+    index[temp_index] = index[max_index-i-1];
   }
 }
 

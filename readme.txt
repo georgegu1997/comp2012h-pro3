@@ -3,8 +3,8 @@
  **********************************************************************/
 
 Name: GU Qiao
-ID:
-Login:
+ID: 20328422
+Login: qgu
 Hours to complete assignment (optional):
 
 
@@ -50,7 +50,7 @@ the next big operation that takes 2^m copy actions, there must be at least
 2^m. And on average, each operation takes 2 copy actions. So, the total
 time cost is O(2n)=O(n).
 
-So the total time cost must be between 2n and 3n, which is O(n).
+So the total time cost must be smaller than 3n, which is O(n).
 
 /**********************************************************************
  *  Briefly describe why each Deque operation takes O(1) time.
@@ -73,8 +73,23 @@ add or remove the first or the last item, which is O(1).
  **********************************************************************/
 
 RandomizedQueue:
+  object overhead: 8 bytes
+  T *_start: 4 bytes (assume the pointer is an integer)
+  int _size: 4 bytes
+  int _capacity: 4 bytes
+  data array overhead: 16 bytes
+
+  total: 36 bytes
+  tilde notation: 36
 
 Dequeue:
+  object overhead: 8 bytes
+  Node *head: 4 bytes (assume same as integer)
+  int _size: 4 bytes
+  two pointers per node: 8N bytes (assume pointer the same as integer)
+
+  total: (8N + 16) bytes
+  tilde notation: 8N
 
 
 
@@ -89,6 +104,11 @@ Dequeue:
  *  including help from staff members or lab TAs.
  **********************************************************************/
 
+When I learned the amortized analysis by myself on the wikipedia
+(https://en.wikipedia.org/wiki/Amortized_analysis), the pedia
+just used the resizing array as an example, and conclude that the average
+time for a operation is O(1). So, I actually got my idea of RandomizedQueue
+from that.
 
 
 /**********************************************************************
