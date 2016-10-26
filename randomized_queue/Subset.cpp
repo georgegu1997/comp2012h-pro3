@@ -35,8 +35,12 @@ int main(int argc, char ** argv) {
 //and can be ended by just type enter.
   while ((c = getchar()) != '\n') {
     if (c == ' '){
-      rq.enqueue(tmp);
-      tmp = "";
+      if ( tmp != "" && tmp != " "){
+        rq.enqueue(tmp);
+        tmp = "";
+      }else {
+        tmp = "";
+      }
     }else {
       tmp += c;
     }
