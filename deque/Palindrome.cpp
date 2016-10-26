@@ -22,6 +22,7 @@ int main() {
   cout<<"Please input the sequence(must be composed by A, T, C, and G):"<<endl;
 
   while ((c = getchar()) != '\n') {
+    // only accept the input with A T C G
     if(c != 'A' && c != 'T' && c != 'C' && c != 'G') {
       cout<<"the input must be a sequence of A, T, C or G"<<endl;
       exit(0);
@@ -36,7 +37,7 @@ int main() {
     while(!dq.isEmpty()) {
       first = dq.removeFirst();
       last = dq.removeLast();
-      if ((first == 'T'&& last !='A') || (first=='A' && last !='T') || (first == 'C' && last !='G') || (first == 'G' && last !='G')){
+      if ((first == 'T'&& last !='A') || (first=='A' && last !='T') || (first == 'C' && last !='G') || (first == 'G' && last !='C')){
         is_palindrome = 0;
       }
     }

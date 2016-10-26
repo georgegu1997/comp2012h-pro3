@@ -32,41 +32,85 @@ public:
 
   //destructor
   ~RandomizedQueue();
+
+  // is the queue empty?
   bool isEmpty();
+
+  // return the number of items on the queue
   int size();
+
+  // add the item
   void enqueue(T);
+
+  // delete and return a random item
   T dequeue();
+
+  // return (but do not delete) a random item
   T sample();
+
+  // return an iterator that returns the items in random order
   Iterator iterator();
 
   class Iterator {
   public:
+    // this Iterator just create a copy of all indexes
+    // and then shuffle them as the return item in order
+
     //default constructor
     Iterator();
+
     //typical constructor from a RandomizedQueue
     Iterator(T*, int);
+
     //copy constructor
     Iterator(const Iterator& itr);
+
     //assign constructor
     Iterator& operator=(const Iterator& itr);
 
+    //destructor
     ~Iterator();
+
+    //overloading the ++ and * operator
     void operator++();
     T operator*();
+
   private:
+
+    //shufffle the index
     void shuffle();
+
+    //the pointer to the start of the array
     T* _start;
+
+    //the current position in the shuffled index
+    //Not the real index
     int _pos;
+
+    //the size of the index
     int max_index;
+
+    //shuffled index
     int *shuffle_index;
   };
 
 private:
+  //creat a new array with int size and move the old items into the new one
   void resize (int);
+
+  //the pointer to the start of the array
   T* _start;
+
+  //the number of the items stored in the array
   int _size;
+
+  //The capacity of the array(the real space allocated for the array)
   int _capacity;
 };
+
+/*
+  the implementation of the member functions
+*/
 
 template <typename T>
 RandomizedQueue<T>::RandomizedQueue():_size(0),_capacity(2),_start(new T[2]) {}

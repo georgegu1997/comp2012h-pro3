@@ -68,7 +68,7 @@ public:
     //because it doesn't have dynamic data member
     //only define the typical constructor, using copy and assign constructor
     //created by the compiler
-    DequeIterator(const Deque<T>*);
+    Iterator(const Deque<T>*);
 
     //overloading the ++ and * operator
     void operator++();
@@ -206,17 +206,17 @@ typename Deque<T>::Iterator Deque<T>::iterator() {
 //for the DequeIterator class
 
 template <typename T>
-Deque<T>::DequeIterator::DequeIterator(const Deque<T>* deque) {
+Deque<T>::Iterator::Iterator(const Deque<T>* deque) {
   node = deque->head->next;
 }
 
 template <typename T>
-void Deque<T>::DequeIterator::operator++() {
+void Deque<T>::Iterator::operator++() {
   node = node->next;
 }
 
 template <typename T>
-T Deque<T>::DequeIterator::operator*() {
+T Deque<T>::Iterator::operator*() {
   return node->data;
 }
 
